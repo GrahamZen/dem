@@ -3,6 +3,7 @@ from dem.src.core.factory import *
 from dem.app.gravity      import *
 from dem.app.restitution  import *
 from dem.app.dam_break    import *
+from dem.app.column_collapse1    import *
 from dem.app.carreau      import *
 from dem.app.obstacle     import *
 from dem.app.silo         import *
@@ -18,6 +19,7 @@ app_factory = factory()
 app_factory.register("gravity",     gravity)
 app_factory.register("restitution", restitution)
 app_factory.register("dam_break",   dam_break)
+app_factory.register("column_collapse1",   column_collapse1)
 app_factory.register("carreau",     carreau)
 app_factory.register("obstacle",    obstacle)
 app_factory.register("silo",        silo)

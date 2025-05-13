@@ -5,7 +5,7 @@ import random
 
 # Custom imports
 from dem.app.base_app import *
-
+import dem.app.config
 ### ************************************************
 ### Dropping of several spheres to check inter-particle contacts
 class dam_break(base_app):
@@ -31,12 +31,13 @@ class dam_break(base_app):
 
         self.nt      = int(self.t_max/self.dt)
         self.plot_it = 0
+       
+        data = np.load(dem.app.config.np_path)
 
-        self.n_row  = 30 # nb of particles on a row at start
-        self.n_col  = 30 # nb of particles on a col at start
+        self.np  = data['q'].shape[0]
         self.radius = 0.025
 
-        self.p = particles(np        = self.n_row*self.n_col,
+        self.p = particles(np        = self.np,
                            nt        = self.nt,
                            material  = "steel",
                            radius    = self.radius,
@@ -44,6 +45,7 @@ class dam_break(base_app):
                            store     = False,
                            search    = "nearest",
                            rad_coeff = 2.0)
+        self.p.x = data['q']
 
         self.p.e_wall[:] = 0.99
         self.p.e_part[:] = 0.99
@@ -53,7 +55,7 @@ class dam_break(base_app):
 
         self.d = domain_factory.create("rectangle",
                                        x_min      = 0.0,
-                                       x_max      = 5.0,
+                                       x_max      = 11.0,
                                        y_min      = 0.0,
                                        y_max      = 4.0,
                                        material   = "steel")
@@ -72,10 +74,9 @@ class dam_break(base_app):
         self.t  = 0.0
         sep = 4.0*self.radius
 
-        for i in range(self.n_row):
-            for j in range(self.n_col):
-                self.p.x[self.n_col*i+j,0] = sep + sep*i + self.radius*random.random()
-                self.p.x[self.n_col*i+j,1] = 10*sep + sep*j
+        for i in range(self.np):
+            self.p.x[i,0] += 5.0 # half of x_max(11)
+
 
     ### ************************************************
     ### Compute forces

@@ -1,0 +1,5 @@
+dem/app/*
+results/*
+*.pyc
+*.nbc
+*.nbi

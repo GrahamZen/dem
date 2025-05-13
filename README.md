@@ -30,3 +30,18 @@ Running a specific case requires to write an application in `dem/app`, and then 
 | <img height="250" alt="gif" src="dem/save/dam_break.gif"> | <img height="250" alt="gif" src="dem/save/silo.gif">           | <img height="250" alt="gif" src="dem/save/mill.gif">     |
 | **`silo-open`**                                           | **`turek`**                                                    | **`?`**                                                  |
 | <img height="250" alt="gif" src="dem/save/silo_open.gif"> | <img height="250" alt="gif" src="dem/save/turek.gif">          | <img height="250" alt="gif" src="dem/save/logo.png">     |
+
+### Column Collapse
+
+Command:
+
+Step 1:
+```bash
+python .\start.py column_collapse1 [filename.npz]
+```
+will save the final state to `filename.npz`.
+
+Step 2:
+```bash
+python .\start.py dam_break [filename.npz]
+```

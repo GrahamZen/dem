@@ -65,6 +65,9 @@ class particles:
             self.names = ["x", "y", "vx", "vy"]
             self.buff  = buff(self.np, self.nt, self.names)
 
+    def save_x(self,path):
+        np.savez_compressed(path, q=self.x)
+
     ### ************************************************
     ### Reset forces
     def reset_forces(self):

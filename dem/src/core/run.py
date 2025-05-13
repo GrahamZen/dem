@@ -8,7 +8,7 @@ from dem.app.app import *
 ########################
 # Run dem simulation
 ########################
-def run(app):
+def run(app, save_path=None):
 
     # Timer and loop data
     start_time = time.time()
@@ -32,6 +32,9 @@ def run(app):
         compute = app.check_stop()
 
     # Count time
+    if save_path:
+        print("save to", save_path)
+        app.p.save_x(save_path)
     end_time = time.time()
     print("# Loop time = {:f}".format(end_time - start_time))
 
